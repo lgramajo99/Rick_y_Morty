@@ -5,6 +5,7 @@ import Cards from './components/Cards.jsx'
 import Nav from './components/Nav'
 import About from './components/About'
 import Detail from './components/Detail'
+import Error from './components/Error';
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -23,9 +24,10 @@ function App() {
     <div className='App'>
       <Nav onSearch={onSearch} />
       <Routes>
-        <Route path='/home' element={<Cards onClose={onClose} characters={characters} />} />
-        <Route path='/detail/:detailId' element={<Detail />} />
-        < Route path='/about' element={<About />} />
+        <Route path='/home' caseSensitive={true} index={true} element={<Cards onClose={onClose} characters={characters} />} />
+        <Route path={'/detail/:detailId'} element={<Detail />} />
+        <Route path='/about' caseSensitive={true} element={<About />} />
+        <Route path='*' element={<Error />} />
       </Routes>
     </div >
   )

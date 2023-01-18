@@ -1,6 +1,52 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Detail() {
+
+
+    const { detailId } = useParams();
+    const [character, setCharacter] = useState({})
+    useEffect(() => {
+        fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+            .then((response) => response.json())
+            .then((char) => {
+                if (char.name) setCharacter(char);
+                else window.alert("No hay personajes con ese ID")
+            })
+            .catch((err) => { window.alert("No hay personajes con ese ID") });
+        return setCharacter({});
+    }, [detailId]);
+
+    const estado = () => {
+        if (character?.status === 'Alive') return 'Vivo';
+        else if (character?.status === 'Dead') return 'Muerto';
+        else { return 'No disponible' }
+    }
+    const especie = () => {
+        if (character?.species === 'unknown') return 'No disponible';
+        else return character?.species
+    }
+    const genero = () => {
+        if (character?.gender === 'unknown') return `No disponible`
+        else {
+            if (character?.gender === 'Alive') return 'Vivo'
+            else return 'Muerto'
+        }
+    }
     return <div>
-        <h1>Pagiga de detail</h1>
+
+        <button>
+            <Link to={'/home'}>Home</Link>
+        </button>
+
+        <h2>{(character?.name)}</h2>
+        <h3>Estado: {estado()}</h3>
+        <h3>Especie: {especie()}</h3>
+        <h3>Genero: {genero()}</h3>
+        <h3>Tipo: {character?.type || `No disponible`}</h3>
+        <h3>Origen: {(character?.origin?.name) === "unknown" ? 'No disponible' : character?.origin?.name}</h3>
+        <h3>Localización: {(character?.location?.name === "unknown") ? 'No disponible' : character?.location?.name}</h3>
+        <img src={character?.image} alt={character.name} />
     </div>
 }
 
