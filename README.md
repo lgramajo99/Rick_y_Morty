@@ -1,70 +1,179 @@
-# Getting Started with Create React App
+# HW 09 - React-Routing | Integración
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Duración estimada 🕒**
 
-## Available Scripts
+50 minutos
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **Rick & Morty App**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **INTRO**
 
-### `npm test`
+Continuamos con nuestra Rick & Morty App. Utilizaremos React-Router-DOM el cual nos va a permitir enrutar nuestra SPA. Esto quiere decir que podremos decidir en que path o "link" se renderice cada componente.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Al finalizar, habremos creado tres rutas por las que podremos navegar:
 
-### `npm run build`
+- **"/home"**: esta será la ruta del Home (vista principal/general).
+- **"/detail/:detailId"**: en esta ruta encontraremos información más detallada sobre el personaje en particular.
+- **"/about"**: en esta ruta colocarás tu nombre y describirás de qué trata la aplicación Rick & Morty.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **COMENCEMOS**
 
-### `npm run eject`
+Vamos a comenzar creando los componentes que nos faltan en nuestra carpeta components. Creamos `About.jsx` y `Detail.jsx` con sus respectivos archivos. Sólo los crearemos, aún no los construiremos. También creamos el archivo `.css` para el estilado. Recuerda que puedes utilizar cualquier formato de estilos (in-line, module, styled components, etc)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Cómo sabemos, `react-router-dom` nos da la posibilidad de crear rutas dinámicas. Estas rutas serán los path o links en el que se renderizará el componente que nosotros decidamos. Para este ejercicio queremos que en cada link se vea lo siguiente:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `<Nav />` debe que aparecer en todas las rutas.
+- `<Cards />` debe aparecer sólo en la ruta `/home`.
+- `<About />` debe aparecer sólo en la ruta `/about`.
+- `<Detail />` debe aparecer sólo en la ruta `/detail/:detailId`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br />
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### **👩‍💻 EJERCICIO 1**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **Instalar y configurar `react-router-dom`**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Instala `react-router-dom` desde la terminal. Importa y envuelve la aplicación con "**BrowserRouter**" en el archivo index.js.
 
-### Code Splitting
+Importa los elementos "**Routes**" y "**Route**", para que luego definamos las rutas en el archivo app.js.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br />
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### **👩‍💻 EJERCICIO 2**
 
-### Making a Progressive Web App
+### **Mi perfil**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Ahora si construiremos el componente `<About />`. Este componente será una vista que contenga tu información y una explicación acerca de la aplicación!
 
-### Advanced Configuration
+Esto significa que es completamente libre. Puedes mostrar incluso una foto tuya. Esto le servirá a las personas que vean tu App para conocer al creador 🤠✨.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+En la Navbar agrega el link About que dirija al componente **About** y el link Home para que dirija al componente **Home**.
 
-### Deployment
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+### **👩‍💻 EJERCICIO 3**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **Routing time!**
+
+En nuestro archivo "app.js" (aplicación), crea las rutas necesarias para que los componentes `<About />`, `<Cards />` y `<Nav />` se rendericen en sus links correspondientes. Recuerda que en el **EJERCICIO 1** ya están especificadas las rutas.
+
+Respecto al componente `<Detail />`, su ruta recibirá el parámetro **detailId**, por lo que debes asegurarte de escribir bien el path de esta ruta.
+
+> **Nota:** Comprueba en tu navegador que los links rendericen el componente correcto, y que el componente `<Nav />` se vea siempre.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 4**
+
+### **Detail redirection**
+
+Ahora nuestra SPA cuenta con tres rutas distintas: "`/home`", "`/detail/:detailId`" y "`/about`".
+
+Para este ejercicio:
+
+1. En el componente `<Card />` importa y envuelve el nombre del personaje con el elemento "**Link**". Tiene que redirigirnos a la ruta de cada personaje.
+2. A este componente deberás pasarle por **props** el "**id**" del personaje para usarlo en el Link.
+
+```js
+// Card.js
+...
+<Link to={`/detail/${props.id}`} >
+  <h5 className="card-title">{props.name}</h5>
+</Link>
+...
+```
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 5**
+
+### **Construcción del Detail**
+
+¡Genial! Cuando hacemos click sobre el nombre en una Card esta nos redirige a la ruta con el ID del personaje. Ahora necesitamos crear el componente que mostrará toda la información del personaje.
+
+Para obtener esta información importa los hooks **useState** de `react` y **useParams** de `react-router-dom` en el componente `<Detail />`.
+
+1. Primero obten el ID del personaje mediante **useParams**.
+
+2. Crea un estado local con el nombre **character**.
+
+3. En este paso importaremos el hook **useEffect** de `react`. Una vez importado, copia el siguiente código y pégalo en el cuerpo del componente.
+
+```js
+useEffect(() => {
+  fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+    .then((response) => response.json())
+    .then((char) => {
+      if (char.name) {
+        setCharacter(char);
+      } else {
+        window.alert("No hay personajes con ese ID");
+      }
+    })
+    .catch((err) => {
+      window.alert("No hay personajes con ese ID");
+    });
+  return setCharacter({});
+}, [id]);
+```
+
+> **NOTA:** Este código es el que buscará al personaje de la API cada vez que el componente se monte. Y luego, cada vez que se desmonte, borrará su información.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 6**
+
+Ahora en tu estado local **character** tendrás toda la información del personaje disponible para que la renderices en este componente (`<Detail />`). Debes traer la siguiente información:
+
+- Name
+- Status
+- Specie
+- Gender
+- Origin
+- Image
+
+Dándole estilos debería quedarte algo similar a esto:
+
+<img src="./img/final_detail.png" width='800px'/>
+
+<br />
+
+> Hint: Ten en cuenta el tipo de dato de cada propiedad renderizada! Además cuando vayas a renderizar la información puede suceder que al ser la llamada a la API de Rick & Morty asíncrona, no le da tiempo de guardar la información y renderizarla. Para ello, puedes usar "?" para validar si nuestro estado tiene información a renderizar.
+
+---
+
+### **👩‍💻 EJERCICIO 7**
+
+Crea un botón en el componente `<Detail />` que te permita regresar a "`/home`".
+
+<br />
+
+---
+
+### **📌 EXTRA CREDIT**
+
+Ahora te desafiamos a que crees un nuevo componente llamado **Error**. A este componente le podrás dar los estilos que quieras, pero la idea es que se muestre un mensaje de error 404.
+
+Pueden inspirarte en el siguiente link: "https://github.com/errroorrxd".
+
+El desafío es el siguiente: haz que este componente se muestre cada vez que el usuario ingrese a cualquier otra ruta que no exista. Es decir que no la hayas especificado en esta homework. Por ejemplo, si creaste una ruta "`/home`" y "`/about`", y el usuario en el navegador escribe y "`/henry`", debería mostrar el error 404.
