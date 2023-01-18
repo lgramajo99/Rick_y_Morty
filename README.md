@@ -1,8 +1,8 @@
-# HW 09 - React-Routing | Integración
+## HW 10: React-Forms | Integración
 
 ## **Duración estimada 🕒**
 
-50 minutos
+60 minutos
 
 <br />
 
@@ -12,13 +12,12 @@
 
 ### **INTRO**
 
-Continuamos con nuestra Rick & Morty App. Utilizaremos React-Router-DOM el cual nos va a permitir enrutar nuestra SPA. Esto quiere decir que podremos decidir en que path o "link" se renderice cada componente.
+En la integración de hoy crearemos un formulario de login. Así, cada vez que ingresemos a nuestra app tendremos que logearnos para utilizarla. Tanto el formulario como sus validaciones las haremos con Javascript.
 
-Al finalizar, habremos creado tres rutas por las que podremos navegar:
+Nuestro formulario va a estar compuesto de:
 
-- **"/home"**: esta será la ruta del Home (vista principal/general).
-- **"/detail/:detailId"**: en esta ruta encontraremos información más detallada sobre el personaje en particular.
-- **"/about"**: en esta ruta colocarás tu nombre y describirás de qué trata la aplicación Rick & Morty.
+-  Username: el nombre de usuario tiene que ser un email, si no, tiene que mostrar un error.
+-  Password: la contraseña tiene que contener por lo menos un número y tener una longitud de entre 6 y 10 caracteres, si no debe mostrar un error.
 
 <br />
 
@@ -26,26 +25,21 @@ Al finalizar, habremos creado tres rutas por las que podremos navegar:
 
 ## **COMENCEMOS**
 
-Vamos a comenzar creando los componentes que nos faltan en nuestra carpeta components. Creamos `About.jsx` y `Detail.jsx` con sus respectivos archivos. Sólo los crearemos, aún no los construiremos. También creamos el archivo `.css` para el estilado. Recuerda que puedes utilizar cualquier formato de estilos (in-line, module, styled components, etc)
-
-Cómo sabemos, `react-router-dom` nos da la posibilidad de crear rutas dinámicas. Estas rutas serán los path o links en el que se renderizará el componente que nosotros decidamos. Para este ejercicio queremos que en cada link se vea lo siguiente:
-
-- `<Nav />` debe que aparecer en todas las rutas.
-- `<Cards />` debe aparecer sólo en la ruta `/home`.
-- `<About />` debe aparecer sólo en la ruta `/about`.
-- `<Detail />` debe aparecer sólo en la ruta `/detail/:detailId`
-
-<br />
+Vamos a comenzar creando el componente que nos falta en nuestra carpeta components. Creamos `Form.jsx` con su respectivo archivo `.css` para darle estilos.
 
 ---
 
-### **👩‍💻 EJERCICIO 1**
+### 👩‍💻 EJERCICIO 1
 
-### **Instalar y configurar `react-router-dom`**
+### Estructura
 
-Instala `react-router-dom` desde la terminal. Importa y envuelve la aplicación con "**BrowserRouter**" en el archivo index.js.
+Vamos a trabajar en el archivo `Form.jsx` que acabas de crear.
 
-Importa los elementos "**Routes**" y "**Route**", para que luego definamos las rutas en el archivo app.js.
+Primero agregaremos una etiqueta `<div />` que envolverá a todo el componente. Tiene que haber una etiqueta `<label />` y una `<input />` tanto para el **username** como para la **password**. Por último, agrega una etiqueta `<button />`.
+
+Dale algo de estilos al componente. Te dejamos una plantilla de cómo puede quedar!
+
+<img src="./img/form_v1.png" alt="" />
 
 <br />
 
@@ -53,13 +47,14 @@ Importa los elementos "**Routes**" y "**Route**", para que luego definamos las r
 
 ### **👩‍💻 EJERCICIO 2**
 
-### **Mi perfil**
+### **Ruteo**
 
-Ahora si construiremos el componente `<About />`. Este componente será una vista que contenga tu información y una explicación acerca de la aplicación!
+Ahora deberás cumplir los siguientes dos pasos:
 
-Esto significa que es completamente libre. Puedes mostrar incluso una foto tuya. Esto le servirá a las personas que vean tu App para conocer al creador 🤠✨.
+1. Crea una ruta en el archivo `app.jsx` para que el formulario se renderice en el path "`/`".
+2. Si obervas la imagen del ejercicio anterior, la barra de navegación también se muestra en el **Login**. Cambia esto de modo que el `<Nav />` se muestre en todos lados, menos en el **Login**.
 
-En la Navbar agrega el link About que dirija al componente **About** y el link Home para que dirija al componente **Home**.
+> **PISTA:** investiga sobre el hook "useLocation" de react-router-dom, y piensa cómo hacer un renderizado condicional.
 
 <br />
 
@@ -67,13 +62,18 @@ En la Navbar agrega el link About que dirija al componente **About** y el link H
 
 ### **👩‍💻 EJERCICIO 3**
 
-### **Routing time!**
+### **Estado del formulario**
 
-En nuestro archivo "app.js" (aplicación), crea las rutas necesarias para que los componentes `<About />`, `<Cards />` y `<Nav />` se rendericen en sus links correspondientes. Recuerda que en el **EJERCICIO 1** ya están especificadas las rutas.
+El siguiente paso es poder controlar nuestro formulario. Para esto trabajaremos con un estado local con esta estructura:
 
-Respecto al componente `<Detail />`, su ruta recibirá el parámetro **detailId**, por lo que debes asegurarte de escribir bien el path de esta ruta.
+```js
+// Form.jsx
+const [userData, setUserData] = React.useState({ username: '', password: '' });
+```
 
-> **Nota:** Comprueba en tu navegador que los links rendericen el componente correcto, y que el componente `<Nav />` se vea siempre.
+Ahora conecta tu estado local con los inputs correspondientes utilizando la propiedad `value`.
+
+Por último, usaremos el evento `onChange` en ambos inputs para poder guardar la información del usuario. Te sugerimos que crees una función **handleInputChange** la cual reciba el evento del input, y a partir de esta se modifique el estado local.
 
 <br />
 
@@ -81,23 +81,26 @@ Respecto al componente `<Detail />`, su ruta recibirá el parámetro **detailId*
 
 ### **👩‍💻 EJERCICIO 4**
 
-### **Detail redirection**
+### **Validaciones**
 
-Ahora nuestra SPA cuenta con tres rutas distintas: "`/home`", "`/detail/:detailId`" y "`/about`".
+En tu componente `<Form />` crea un nuevo estado local llamado "**errors**". Este es el estado que usarás para encontrar errores en el formulario.
 
-Para este ejercicio:
+Luego crea un nuevo archivo en la carpeta de tu componente Form.jsx con el nombre "**validation.js**". Aquí dentro deberás crear una función que valide lo siguiente:
 
-1. En el componente `<Card />` importa y envuelve el nombre del personaje con el elemento "**Link**". Tiene que redirigirnos a la ruta de cada personaje.
-2. A este componente deberás pasarle por **props** el "**id**" del personaje para usarlo en el Link.
+**USERNAME**
 
-```js
-// Card.js
-...
-<Link to={`/detail/${props.id}`} >
-  <h5 className="card-title">{props.name}</h5>
-</Link>
-...
-```
+-  el nombre de usuario tiene que ser un email _(explora validaciónes REGEX en internet!)_.
+-  el nombre de usuario no puede estar vacío.
+-  el nombre de usuario no puede tener más de 35 caracteres.
+
+**PASSWORD**
+
+-  la contraseña tiene que tener al menos un número.
+-  la contraseña tiene que tener una longitud entre 6 y 10 caracteres.
+
+No te olvides de renderizar y darle estilos a tus errores! Te dejamos un ejemplo de cómo puede quedar.
+
+<img src="./img/input_error.png" alt="" >
 
 <br />
 
@@ -105,37 +108,42 @@ Para este ejercicio:
 
 ### **👩‍💻 EJERCICIO 5**
 
-### **Construcción del Detail**
+### **Simulación de seguridad**
 
-¡Genial! Cuando hacemos click sobre el nombre en una Card esta nos redirige a la ruta con el ID del personaje. Ahora necesitamos crear el componente que mostrará toda la información del personaje.
+Ahora simularemos una base de datos donde esté guardado un username y password. De esta forma, solo si la información de usuario coincide podrá usar la aplicación. Para esto:
 
-Para obtener esta información importa los hooks **useState** de `react` y **useParams** de `react-router-dom` en el componente `<Detail />`.
+1. En el archivo `App.js` crea lo siguiente:
 
-1. Primero obten el ID del personaje mediante **useParams**.
+   -  Un estado local llamado "**access**" que se inicialice en `false`.
+   -  Una variable llamada "**username**", y que sea igual a tu email.
+   -  Una variable "**password**", y que sea igual a una contraseña.
 
-2. Crea un estado local con el nombre **character**.
+2. Crea una función llamada "**login**" que reciba por parámetro "_userData_". Esta función tiene que preguntar si el username y password que declaraste más arriba son iguales a los que les está llegando por parámetro. En caso afirmativo, el estado local access ahora será `true`. Importa el hook "**useNavigate**" de `react-router-dom` y haremos que nos redirija a `/home` si la información es correcta.
 
-3. En este paso importaremos el hook **useEffect** de `react`. Una vez importado, copia el siguiente código y pégalo en el cuerpo del componente.
+```jsx
+const navigate = useNavigate();
+const [access, setAccess] = useState(false);
+const username = 'ejemplo@gmail.com';
+const password = '1password';
 
-```js
-useEffect(() => {
-  fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
-    .then((response) => response.json())
-    .then((char) => {
-      if (char.name) {
-        setCharacter(char);
-      } else {
-        window.alert("No hay personajes con ese ID");
-      }
-    })
-    .catch((err) => {
-      window.alert("No hay personajes con ese ID");
-    });
-  return setCharacter({});
-}, [id]);
+function login(userData) {
+   if (userData.password === password && userData.username === username) {
+      setAccess(true);
+      navigate('/home');
+   }
+}
 ```
 
-> **NOTA:** Este código es el que buscará al personaje de la API cada vez que el componente se monte. Y luego, cada vez que se desmonte, borrará su información.
+3. Por último, lleva el siguiente código a tu componente (no te olvides de importar el `useEffect`).
+
+```javascript
+//App.js
+useEffect(() => {
+   !access && navigate('/');
+}, [access]);
+```
+
+Esto no nos dejará navegar por la aplicación, al menos que ingresemos la información correcta!
 
 <br />
 
@@ -143,37 +151,24 @@ useEffect(() => {
 
 ### **👩‍💻 EJERCICIO 6**
 
-Ahora en tu estado local **character** tendrás toda la información del personaje disponible para que la renderices en este componente (`<Detail />`). Debes traer la siguiente información:
+### **Login**
 
-- Name
-- Status
-- Specie
-- Gender
-- Origin
-- Image
+Ahora le daremos la funcionalidad de cambiar los permisos a nuestro login! Para esto:
 
-Dándole estilos debería quedarte algo similar a esto:
+1. En el archivo `App.js`, le pasaremos la función **login** que creaste en el ejercicio anterior por props al componente `<Form />`.
 
-<img src="./img/final_detail.png" width='800px'/>
+2. En el componente `<Form />`, crea una función "**handleSubmit**". Esta función por dentro sólo debe ejecutar la función "**login**" recibida por props. No te olvides de pasarle por parámetro tu estado local _userData_!
 
-<br />
+¡Listo! Ya tienes un Login funcional!!😀🥳🤓
 
-> Hint: Ten en cuenta el tipo de dato de cada propiedad renderizada! Además cuando vayas a renderizar la información puede suceder que al ser la llamada a la API de Rick & Morty asíncrona, no le da tiempo de guardar la información y renderizarla. Para ello, puedes usar "?" para validar si nuestro estado tiene información a renderizar.
-
----
-
-### **👩‍💻 EJERCICIO 7**
-
-Crea un botón en el componente `<Detail />` que te permita regresar a "`/home`".
+Pruebalo ingresando la información que declaraste previamente.
 
 <br />
 
 ---
 
-### **📌 EXTRA CREDIT**
+### **📌 EJERCICIO EXTRA**
 
-Ahora te desafiamos a que crees un nuevo componente llamado **Error**. A este componente le podrás dar los estilos que quieras, pero la idea es que se muestre un mensaje de error 404.
+-  Ahora te desafiamos a que crees un botón "**Logout**" en tu componente `<Nav />`. Si lo presionas debe quitar los permisos de acceso y redirigirte automáticamente a tu componente `<Form />`.
 
-Pueden inspirarte en el siguiente link: "https://github.com/errroorrxd".
-
-El desafío es el siguiente: haz que este componente se muestre cada vez que el usuario ingrese a cualquier otra ruta que no exista. Es decir que no la hayas especificado en esta homework. Por ejemplo, si creaste una ruta "`/home`" y "`/about`", y el usuario en el navegador escribe y "`/henry`", debería mostrar el error 404.
+> **PISTA:** lo puedes hacer creando una función **logout** en tu archivo App.js.
