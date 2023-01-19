@@ -18,10 +18,11 @@ function App() {
         else window.alert('No hay personajes con ese ID')
       })
   }
+
+  
   const location = useLocation();
 
   const onClose = (id) => { setCharacters(characters.filter(character => character.id !== id)) }
-
 
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
@@ -37,7 +38,7 @@ function App() {
 
   useEffect(() => {
     !access && navigate('/');
-  }, []);
+  }, [access, navigate]);
 
   return (
     <div className='App'>

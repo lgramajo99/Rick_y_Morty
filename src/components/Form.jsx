@@ -52,11 +52,11 @@ function Form(props) {
     return <div>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Correo Electronico</label>
-            <input type="email" name="username" value={userData.username} onChange={(e) => handleInputChange(e)} id="" />
+            <input type="email" name="username" value={userData.username} onChange={(e) => handleInputChange(e)} />
             <p>{errors.username || ''}</p>
 
             <label htmlFor="password">Contraseña</label>
-            <input type="password" name="password" value={userData.password} onChange={(e) => handleInputChange(e)} id="" />
+            <input type="password" name="password" value={userData.password} onChange={(e) => handleInputChange(e)} />
             <p>{errors.password || ''}</p>
 
             <button type="submit">Ingresar</button>
