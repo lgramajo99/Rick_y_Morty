@@ -34,4 +34,5 @@
     font-size: x-large;
     color: #ffffff;
     text-shadow: 0 0.1em 0.3em #000000;
+    backdrop-filter: invert(80%);
 }

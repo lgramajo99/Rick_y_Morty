@@ -1,0 +1,50 @@
+.contenedor {
+    background: #ffffff !important;
+    border: 2px white solid;
+    width: 30rem;
+    height: 30rem;
+    margin: 2rem auto 0 auto;
+    padding: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+.labelUser {
+    font-size: large;
+
+}
+
+.inputUser {
+    height: 2.5rem;
+    width: 300px;
+    font-size: large;
+
+}
+
+.labelPass {
+    font-size: large;
+}
+
+.inputPass {
+    height: 2.5rem;
+    width: 300px;
+    font-size: large;
+}
+
+
+.botonSubmit {
+    padding: 15px 45px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    transition: .5s;
+    background: rgb(23,177,105);
+    background: -moz-linear-gradient(0deg, rgba(23,177,105,0.7511379551820728) 0%, rgba(23,177,105,0.75) 0%);
+    background: -webkit-linear-gradient(0deg, rgba(23,177,105,0.7511379551820728) 0%, rgba(23,177,105,0.75) 0%);
+    background: linear-gradient(0deg, rgba(23,177,105,0.7511379551820728) 0%, rgba(23,177,105,0.75) 0%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#17b169",endColorstr="#17b169",GradientType=1);
+}
+
+
+.botonSubmit:hover {
+    background-color: #17b169;
+}

@@ -6,7 +6,7 @@ import Nav from './components/nav/Nav'
 import About from './components/About'
 import Detail from './components/detail/Detail'
 import Error from './components/error/Error';
-import Form from './components/Form';
+import Form from './components/form/Form';
 
 function App() {
   const [characters, setCharacters] = useState([]);
