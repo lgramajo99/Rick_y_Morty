@@ -22,7 +22,7 @@ function Form(props) {
             "^(?=[A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]{6,10}$"
         );
 
-        if (!regexEmail.test(inputs.username)) { errors.username = 'Debe ser un correo electrónico' }
+        // if (!regexEmail.test(inputs.username)) { errors.username = 'Debe ser un correo electrónico' }
         if (!inputs.username) { errors.username = 'Agrega tu usuario' }
         if (!inputs.username.length > 35) { errors.username = "Maximo 35 caracteres" }
         if (!regexPassword.test(inputs.password)) { errors.password = 'Contraseña invalida: Entre 6 - 10 caracteres' }

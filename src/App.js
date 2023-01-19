@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.css'
-import Cards from './components/Cards.jsx'
-import Nav from './components/Nav'
+import Cards from './components/cards/Cards.jsx'
+import Nav from './components/nav/Nav'
 import About from './components/About'
-import Detail from './components/Detail'
-import Error from './components/Error';
+import Detail from './components/detail/Detail'
+import Error from './components/error/Error';
 import Form from './components/Form';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       })
   }
 
-  
+
   const location = useLocation();
 
   const onClose = (id) => { setCharacters(characters.filter(character => character.id !== id)) }

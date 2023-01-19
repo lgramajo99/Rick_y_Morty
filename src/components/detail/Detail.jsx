@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import styles from './Detail.module.css'
 function Detail() {
 
 
@@ -33,21 +33,25 @@ function Detail() {
             else return 'Muerto'
         }
     }
-    return <div>
-
-        <button>
-            <Link to={'/home'}>Home</Link>
-        </button>
-
-        <h2>{(character?.name)}</h2>
-        <h3>Estado: {estado()}</h3>
-        <h3>Especie: {especie()}</h3>
-        <h3>Genero: {genero()}</h3>
-        <h3>Tipo: {character?.type || `No disponible`}</h3>
-        <h3>Origen: {(character?.origin?.name) === "unknown" ? 'No disponible' : character?.origin?.name}</h3>
-        <h3>Localización: {(character?.location?.name === "unknown") ? 'No disponible' : character?.location?.name}</h3>
-        <img src={character?.image} alt={character.name} />
-    </div>
+    return (
+        < div className={styles.contenedor} >
+            <div className={styles.contenedorCard}>
+                <div className={styles.contenedorInfo}>
+                    <h2 className={styles.titulo2}>{(character?.name)}</h2>
+                    <h3 className={styles.titulo3}>Estado: {estado()}</h3>
+                    <h3 className={styles.titulo3}>Especie: {especie()}</h3>
+                    <h3 className={styles.titulo3}>Genero: {genero()}</h3>
+                    <h3 className={styles.titulo3}>Tipo: {character?.type || `No disponible`}</h3>
+                    <h3 className={styles.titulo3}>Origen: {(character?.origin?.name) === "unknown" ? 'No disponible' : character?.origin?.name}</h3>
+                    <h3 className={styles.titulo3}>Localización: {(character?.location?.name === "unknown") ? 'No disponible' : character?.location?.name}
+                    </h3>
+                </div>
+                <div className={styles.contenedorImg}>
+                </div>
+                <img src={character.image} alt={character.name} className={styles.imagen} />
+            </div>
+        </div >
+    )
 }
 
 export default Detail;
