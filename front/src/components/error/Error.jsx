@@ -1,7 +1,7 @@
-import style from './Error.module.css';
+import styles from './Error.module.css';
 
 function Error(params) {
-    return <div>
+    return <div className={styles.contenedor}>
         <h1>Error 404</h1>
     </div>
 }
