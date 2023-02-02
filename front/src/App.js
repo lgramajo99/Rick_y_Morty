@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.css'
-import Cards from './components/cards/Cards.jsx'
-import Nav from './components/nav/Nav'
 import About from './components/About'
+import Cards from './components/cards/Cards.jsx'
 import Detail from './components/detail/Detail'
 import Error from './components/error/Error';
+import Favorites from './components/favorites/Favorites';
 import Form from './components/form/Form';
+import Nav from './components/nav/Nav'
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -49,6 +50,7 @@ function App() {
         <Route path='/about' caseSensitive={true} element={<About />} />
         <Route path='/' element={<Form login={login} />} />
         <Route path='*' element={<Error />} />
+        <Route path='/favorites' caseSensitive={true} element={<Favorites />} />
       </Routes>
     </div >
   )

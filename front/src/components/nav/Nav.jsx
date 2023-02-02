@@ -9,6 +9,8 @@ const Nav = ({ onSearch, aleatorio }) => {
     return <div>
         {/* <button disabled>Personaje aleatorio</button> */}
         <ul className={styles.ulNav}>
+            <li className={styles.liNav}><Link to='/'>LOGOUT</Link></li>
+            <li className={styles.liNav}><Link to='/home'>Favorites</Link></li>
             <li className={styles.liNav}><Link to='/about'>About</Link></li>
             <li className={styles.liNav}><Link to='/home'>Home</Link></li>
         </ul >

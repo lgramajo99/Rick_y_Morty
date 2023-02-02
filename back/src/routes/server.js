@@ -19,12 +19,13 @@ http.createServer((req, res) => {
 
 
     let id = req.url.split('/').at(-1);
+    console.log(req.url)
 
-    if (req.url.includes('onsearch')) {
-        getCharById(res, id)
-    }
-    if (req.url.includes('detail')) {
-        getCharDetail(res, id)
-    }
+    // if (req.url.includes('onsearch')) {
+    //     getCharById(res, id)
+    // }
+    // if (req.url.includes('detail')) {
+    //     getCharDetail(res, id)
+    // }
 
 }).listen(_PORT, 'localhost')

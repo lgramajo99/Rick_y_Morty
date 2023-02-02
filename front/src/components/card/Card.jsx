@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
-import { useDispatch } from "react-redux"
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useState, useEffect } from "react";
 import { addFavorite, deleteFavorite } from "../../redux/actions";
 
 export default function Card({ id, name, species, gender, image, onClose }) {
    const dispatch = useDispatch();
+   const myFavorites = useSelector(state => state.myFavorites)
    const [isFav, setIsFav] = useState(false)
 
    const handleFavorite = () => {
@@ -17,7 +18,16 @@ export default function Card({ id, name, species, gender, image, onClose }) {
          setIsFav(true)
          dispatch(addFavorite({ name, species, gender, image, onClose, id }))
       }
-   }
+   };
+
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [myFavorites]);
 
    return (
       <div className={styles.container}>
