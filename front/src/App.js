@@ -12,7 +12,7 @@ import Nav from './components/nav/Nav'
 function App() {
   const [characters, setCharacters] = useState([]);
   const onSearch = (character) => {
-    fetch(`http://localhost:3001/rickandmorty/onsearch/${character}`)
+    fetch(`http://localhost:3001/rickandmorty/characters/${character}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.name) setCharacters((oldChars) => [...oldChars, data]);
